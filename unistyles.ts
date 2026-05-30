@@ -29,6 +29,7 @@ const colors = {
   palette: {
     white: "#FFFFFF",
     grey: "#F2F2F2",
+    purple: "#715DF2",
   },
 };
 

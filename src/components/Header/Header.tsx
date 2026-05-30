@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <View
       style={{
-        backgroundColor: theme.colors.palette.grey,
+        backgroundColor: theme.colors.palette.purple,
         padding: theme.space.md,
       }}
     >
@@ -23,6 +23,7 @@ export const Header = () => {
         >
           <Text
             style={{
+              color: theme.colors.palette.white,
               fontFamily: "OpenSans_600SemiBold",
               fontSize: theme.typography.title.fontSize,
             }}
