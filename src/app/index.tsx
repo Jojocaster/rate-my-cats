@@ -1,28 +1,12 @@
-import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Header } from "@/components/Header/Header";
+import { ScrollView, Text } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
 
 const Home = () => {
   const { theme } = useUnistyles();
   return (
     <>
-      <View
-        style={{
-          backgroundColor: theme.colors.palette.grey,
-          padding: theme.space.md,
-        }}
-      >
-        <SafeAreaView>
-          <Text
-            style={{
-              fontFamily: "OpenSans_500Medium",
-              fontSize: theme.typography.title.fontSize,
-            }}
-          >
-            Rate my cats
-          </Text>
-        </SafeAreaView>
-      </View>
+      <Header />
       <ScrollView
         bounces={false}
         contentContainerStyle={{
