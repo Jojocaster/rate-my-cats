@@ -8,7 +8,8 @@
     "scheme": "ratemycats",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.anonymous.rate-my-cats"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,7 +18,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.ratemycats"
     },
     "web": {
       "output": "static",
@@ -34,7 +36,21 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      [
+        "expo-dev-client",
+        {
+          "launchMode": "most-recent",
+          "defaultLaunchURL": "http://localhost:8081",
+          "android": {
+            "defaultLaunchURL": "http://10.0.0.2:8081"
+          },
+          "toolsButton": true,
+          "skipOnboarding": false,
+          "showMenuAtLaunch": true
+        }
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
