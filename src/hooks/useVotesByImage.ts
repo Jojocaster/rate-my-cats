@@ -1,6 +1,6 @@
 import { useGetVotes, useVote } from "@/components/CatCard/CatCard.queries";
 
-const useVotesByImage = (imageId: string) => {
+export const useVotesByImage = (imageId: string) => {
   const votes = useGetVotes(imageId);
   const { mutateAsync: toggleVote, isPending } = useVote();
 
@@ -13,5 +13,3 @@ const useVotesByImage = (imageId: string) => {
     loading: isPending,
   };
 };
-
-export default useVotesByImage;

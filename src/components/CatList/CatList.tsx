@@ -13,6 +13,7 @@ interface CatListProps {
 const CatList = ({ data, onEndReached, loading }: CatListProps) => {
   return (
     <FlatList
+      testID="cat-list"
       data={data}
       keyExtractor={(item) => item.id}
       numColumns={2}

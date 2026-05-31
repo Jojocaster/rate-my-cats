@@ -1,4 +1,4 @@
-import useVotesByImage from "@/hooks/useVotesByImage";
+import { useVotesByImage } from "@/hooks/useVotesByImage";
 import { CatImage } from "@/types/types";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -57,6 +57,7 @@ const CatCard = ({ item, isLastOdd }: CatCardProps) => {
         />
         <View style={styles.favouriteIcon}>
           <PressableFeedback
+            testID="favourite-button"
             disabled={isUpdating}
             onPress={() => toggleFavourite(item)}
           >
@@ -69,6 +70,7 @@ const CatCard = ({ item, isLastOdd }: CatCardProps) => {
         </View>
         <View style={styles.footer}>
           <PressableFeedback
+            testID="thumbs-up-button"
             disabled={isUpdating}
             onPress={() => voteForCat(THUMBS_UP_VALUE)}
           >
@@ -80,6 +82,7 @@ const CatCard = ({ item, isLastOdd }: CatCardProps) => {
           </PressableFeedback>
           <Text>Score: {score}</Text>
           <PressableFeedback
+            testID="thumbs-down-button"
             disabled={isUpdating}
             onPress={() => voteForCat(THUMBS_DOWN_VALUE)}
           >

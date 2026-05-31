@@ -4,6 +4,7 @@ import LottieView from "lottie-react-native";
 import { useState } from "react";
 import { Alert, Modal, Text, View } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
+import PressableFeedback from "../PressableFeedback/PressableFeedback";
 import { MODAL_TIMEOUT } from "./ImagePicker.constants";
 import { useUploadImage } from "./ImagePicker.queries";
 import { imagePickerStylesheet as styles } from "./ImagePicker.style";
@@ -50,10 +51,10 @@ const ImagePicker = () => {
 
     let result = await Picker.launchImageLibraryAsync({
       base64: true,
+      preferredAssetRepresentationMode:
+        Picker.UIImagePickerPreferredAssetRepresentationMode.Current,
       mediaTypes: ["images", "videos"],
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
     });
 
     if (!result.canceled) {
@@ -65,14 +66,13 @@ const ImagePicker = () => {
 
   return (
     <>
-      <View>
+      <PressableFeedback onPress={pickImage}>
         <Entypo
           name="plus"
           size={theme.tokens.icons.lg}
           color={theme.colors.palette.white}
-          onPress={pickImage}
         />
-      </View>
+      </PressableFeedback>
       <Modal visible={isModalVisible} animationType="fade">
         <View style={styles.modalContent}>
           <LottieView
