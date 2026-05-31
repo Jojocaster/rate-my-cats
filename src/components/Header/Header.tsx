@@ -1,36 +1,14 @@
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useUnistyles } from "react-native-unistyles";
 import ImagePicker from "../ImagePicker/ImagePicker";
+import { headerStylesheet as styles } from "./Header.style";
 
 export const Header: React.FC = () => {
-  const { theme } = useUnistyles();
-
   return (
-    <View
-      style={{
-        backgroundColor: theme.colors.palette.purple,
-        padding: theme.space.md,
-      }}
-    >
+    <View style={styles.container}>
       <SafeAreaView edges={["top"]}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: theme.space.sm,
-          }}
-        >
-          <Text
-            style={{
-              color: theme.colors.palette.white,
-              fontFamily: "OpenSans_600SemiBold",
-              fontSize: theme.typography.title.fontSize,
-            }}
-          >
-            Rate my cats
-          </Text>
+        <View style={styles.row}>
+          <Text style={styles.title}>Rate my cats</Text>
           <ImagePicker />
         </View>
       </SafeAreaView>

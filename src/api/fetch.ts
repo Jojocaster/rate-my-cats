@@ -16,6 +16,7 @@ export async function apiFetch<T>(
     ...(options?.headers as Record<string, string>),
   };
   console.log("headers", headers);
+  console.log("options", options);
   const response = await fetch(url, {
     ...options,
     headers,

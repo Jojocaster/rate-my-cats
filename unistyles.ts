@@ -27,6 +27,13 @@ const typography = {
   },
 };
 
+const tokens = {
+  icons: {
+    md: 24,
+    lg: 32,
+  },
+};
+
 const colors = {
   palette: {
     white: "#FFFFFF",
@@ -40,6 +47,7 @@ const themes = {
     colors,
     space,
     typography,
+    tokens,
   },
 };
 

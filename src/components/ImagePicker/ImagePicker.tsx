@@ -1,52 +1,36 @@
-import { apiFetch } from "@/api/fetch";
-import { queryClient } from "@/app/_layout";
 import Entypo from "@expo/vector-icons/Entypo";
-import { useMutation } from "@tanstack/react-query";
-import { File } from "expo-file-system";
 import * as Picker from "expo-image-picker";
 import LottieView from "lottie-react-native";
 import { useState } from "react";
 import { Alert, Modal, Text, View } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
+import { MODAL_TIMEOUT } from "./ImagePicker.constants";
+import { useUploadImage } from "./ImagePicker.queries";
+import { imagePickerStylesheet as styles } from "./ImagePicker.style";
 
 const ImagePicker = () => {
   const { theme } = useUnistyles();
 
-  const [isUploaded, setUploaded] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const {
+    mutateAsync: upload,
+    data: uploadData,
+    error,
+    isPending,
+  } = useUploadImage();
 
   const uploadPhoto = async (asset: Picker.ImagePickerAsset) => {
     try {
       await upload(asset);
-
-      setUploaded(true);
-      queryClient.invalidateQueries({ queryKey: ["images?limit=10"] });
-
+    } catch (e) {
+      console.log("There was an error uploading the image", e);
+    } finally {
       setTimeout(() => {
         setIsModalVisible(false);
-      }, 2000);
-    } catch {
-      setIsModalVisible(false);
+      }, MODAL_TIMEOUT);
     }
   };
-
-  const { mutateAsync: upload } = useMutation({
-    mutationKey: ["images/upload"],
-    mutationFn: async (asset: Picker.ImagePickerAsset) => {
-      const formData = new FormData();
-
-      formData.append(
-        "file",
-        new File(asset.uri),
-        asset.fileName ?? "photo.jpg",
-      );
-
-      return apiFetch("images/upload", {
-        method: "POST",
-        body: formData,
-      });
-    },
-  });
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library.
@@ -84,32 +68,22 @@ const ImagePicker = () => {
       <View>
         <Entypo
           name="plus"
-          size={32}
+          size={theme.tokens.icons.lg}
           color={theme.colors.palette.white}
           onPress={pickImage}
         />
       </View>
       <Modal visible={isModalVisible} animationType="fade">
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
+        <View style={styles.modalContent}>
           <LottieView
             autoPlay
-            style={{
-              width: 300,
-              height: 300,
-              flexShrink: 1,
-              alignSelf: "center",
-            }}
+            style={styles.lottie}
             source={require("@/assets/lottie/catLoading.json")}
           />
-          <Text
-            style={{
-              fontSize: 16,
-              textAlign: "center",
-            }}
-          >
-            {isUploaded ? "Purrfect, upload successful!" : "Uploading ..."}
+          <Text style={styles.statusText}>
+            {isPending ? "Uploading ..." : null}
+            {uploadData ? "Purrfect, the upload was successful!" : null}
+            {error ? "Oh no, something went wrong! Please try again." : null}
           </Text>
         </View>
       </Modal>
