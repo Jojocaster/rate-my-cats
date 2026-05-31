@@ -17,7 +17,9 @@ jest.mock("@/components/CatCard/CatCard", () => {
 jest.mock("lottie-react-native", () => {
   const { View } = require("react-native");
 
-  return ({ testID }: { testID?: string }) => <View testID={testID ?? "lottie-view"} />;
+  return ({ testID }: { testID?: string }) => (
+    <View testID={testID ?? "lottie-view"} />
+  );
 });
 
 const mockData: CatImage[] = [
