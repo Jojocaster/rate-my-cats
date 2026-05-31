@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { StyleSheet } from "react-native-unistyles";
 
 export const catListStyles = StyleSheet.create((theme) => ({
@@ -6,7 +7,7 @@ export const catListStyles = StyleSheet.create((theme) => ({
   },
   contentContainer: {
     padding: theme.space.md,
-    paddingBottom: theme.space.xxl,
+    paddingBottom: Platform.OS === 'ios' ? theme.space.xxl : theme.space.md,
     gap: theme.space.md,
   },
 }));
