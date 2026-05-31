@@ -1,56 +1,25 @@
 import { Image } from "expo-image";
 import LottieView from "lottie-react-native";
 import { Text, View } from "react-native";
-import { useUnistyles } from "react-native-unistyles";
+import { noCatsStylesheet as styles } from "./NoCatsYet.style";
 
 const NoCatsYet = () => {
-  const { theme } = useUnistyles();
-
   return (
-    <View
-      style={{
-        padding: theme.space.md,
-        alignItems: "center",
-        flex: 1,
-        alignContent: "center",
-        justifyContent: "center",
-        gap: theme.space.md,
-      }}
-    >
-      <Text style={{ fontFamily: "OpenSans_500Medium", fontSize: 16 }}>
-        Nothing to see here yet!
-      </Text>
-      <View
-        style={{
-          position: "relative",
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
+    <View style={styles.container}>
+      <Text style={styles.subtitle}>Nothing to see here yet!</Text>
+      <View style={styles.imageWrapper}>
         <Image
           source={require("@/assets/images/blob2.svg")}
-          style={{
-            width: 200,
-            height: 200,
-            alignSelf: "center",
-            position: "absolute",
-          }}
+          style={styles.blob}
         />
         <LottieView
           autoPlay
           loop
-          style={{ width: 200, height: 200 }}
+          style={styles.lottie}
           source={require("@/assets/lottie/cat.json")}
         />
       </View>
-      <Text
-        style={{
-          fontFamily: "OpenSans_500Medium",
-          fontSize: 16,
-          textAlign: "center",
-          maxWidth: "70%",
-        }}
-      >
+      <Text style={styles.cta}>
         Why don't you upload a cat photo and get some ratings going?
       </Text>
     </View>

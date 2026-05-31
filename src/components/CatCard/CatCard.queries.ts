@@ -3,7 +3,7 @@ import { apiFetch } from "@/api/fetch";
 import { queryClient } from "@/app/_layout";
 import { CACHE_KEYS } from "@/constants/cacheKeys";
 import { CatImage } from "@/types/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { InfiniteData, useMutation, useQuery } from "@tanstack/react-query";
 
 export interface Vote {
   id: number;
@@ -32,10 +32,21 @@ export const useSetFavourite = () =>
         }),
       });
 
-      queryClient.setQueryData<CatImage[]>([CACHE_KEYS.catImages], (old) =>
-        old?.map((cat) =>
-          cat.id === imageId ? { ...cat, favourite: { id: result.id } } : cat,
-        ),
+      queryClient.setQueryData<InfiniteData<CatImage[]>>(
+        [CACHE_KEYS.catImages],
+        (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) =>
+                  page.map((cat) =>
+                    cat.id === imageId
+                      ? { ...cat, favourite: { id: result.id } }
+                      : cat,
+                  ),
+                ),
+              }
+            : undefined,
       );
       return result;
     },
@@ -49,12 +60,21 @@ export const useDeleteFavourite = () =>
         method: "DELETE",
       });
 
-      queryClient.setQueryData<CatImage[]>([CACHE_KEYS.catImages], (old) =>
-        old?.map((cat) =>
-          cat.favourite?.id === favouriteId
-            ? { ...cat, favourite: undefined }
-            : cat,
-        ),
+      queryClient.setQueryData<InfiniteData<CatImage[]>>(
+        [CACHE_KEYS.catImages],
+        (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) =>
+                  page.map((cat) =>
+                    cat.favourite?.id === favouriteId
+                      ? { ...cat, favourite: undefined }
+                      : cat,
+                  ),
+                ),
+              }
+            : undefined,
       );
       return result;
     },
