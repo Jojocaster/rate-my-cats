@@ -66,7 +66,7 @@ const ImagePicker = () => {
 
   return (
     <>
-      <PressableFeedback onPress={pickImage}>
+      <PressableFeedback testID="image-picker-button" onPress={pickImage}>
         <Entypo
           name="plus"
           size={theme.tokens.icons.lg}
