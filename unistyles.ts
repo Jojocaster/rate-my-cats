@@ -7,6 +7,7 @@ export const sm = 8;
 export const md = 16;
 export const lg = 32;
 export const xl = 64;
+export const xxl = 128;
 
 export const space = {
   none,
@@ -16,6 +17,7 @@ export const space = {
   md,
   lg,
   xl,
+  xxl,
 } as const;
 
 const typography = {

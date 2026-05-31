@@ -3,8 +3,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useUnistyles } from "react-native-unistyles";
 import ImagePicker from "../ImagePicker/ImagePicker";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const { theme } = useUnistyles();
+
   return (
     <View
       style={{

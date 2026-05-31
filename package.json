@@ -6,10 +6,13 @@
     "@expo-google-fonts/open-sans": "^0.4.2",
     "@expo/ui": "~56.0.15",
     "@expo/vector-icons": "^15.1.1",
+    "@tanstack/react-query": "^5.100.14",
+    "axios": "^1.16.1",
     "expo": "~56.0.8",
     "expo-constants": "~56.0.16",
     "expo-dev-client": "~56.0.18",
     "expo-device": "~56.0.4",
+    "expo-file-system": "~56.0.7",
     "expo-font": "~56.0.5",
     "expo-glass-effect": "~56.0.4",
     "expo-image": "~56.0.9",
@@ -32,7 +35,8 @@
     "react-native-screens": "4.25.2",
     "react-native-unistyles": "3.2.5",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.8.3"
+    "react-native-worklets": "0.8.3",
+    "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
