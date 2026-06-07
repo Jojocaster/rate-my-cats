@@ -59,12 +59,10 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "resolver": "react-native-worklets/jest/resolver",
     "setupFiles": [
-      "react-native-worklets/mock",
-      "react-native-reanimated/mock",
       "react-native-unistyles/mocks",
-      "<rootDir>/unistyles.ts"
+      "./unistyles.ts",
+      "./jest.setup.js"
     ],
     "moduleNameMapper": {
       "^react-native-unistyles$": "react-native-unistyles/mocks",
